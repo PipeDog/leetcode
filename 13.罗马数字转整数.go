@@ -12,6 +12,36 @@ func romanToInt(s string) int {
 		"C": 100,
 		"D": 500,
 		"M": 1000,
+	}
+
+	ret := 0
+
+	for i := 0; i < len(s); i++ {
+		if i == len(s) - 1 {
+			ret += roman[s[i: i + 1]]
+			break
+		}
+
+		if roman[s[i + 1: i + 2]] > roman[s[i: i + 1]] {
+			val := roman[s[i + 1: i + 2]] - roman[s[i: i + 1]]
+			ret += val
+			i ++
+		} else {
+			ret += roman[s[i: i + 1]]
+		}
+	}
+
+	return ret
+
+	/*
+	var roman = map[string]int{
+		"I": 1,
+		"V": 5,
+		"X": 10,
+		"L": 50,
+		"C": 100,
+		"D": 500,
+		"M": 1000,
 
 		// I、X、C
 		"IV": 4,
@@ -53,5 +83,7 @@ func romanToInt(s string) int {
 	}
 
 	return ret
+	*/
+
 }
 
