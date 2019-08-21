@@ -4,35 +4,37 @@
  * [1] 两数之和
  */
 func twoSum(nums []int, target int) []int {
-    ret := make([]int, 2)
-
-    if len(nums) == 0 {
+	ret := make([]int, 2)
+	numsLen := len(nums)
+	
+	if numsLen == 0 {
 		return ret
 	}
 
 	indexs := make(map[int]int)
 
-	for i := 0; i < len(nums); i++ {
+	for i := 0; i < numsLen; i++ {
 		indexs[nums[i]] = i
 	}
 
-	for i := 0; i < len(nums); i++ {
-        
+	for i := 0; i < numsLen; i ++ {
 		num1 := nums[i]
 		num2 := target - num1
-                
-		if _, ok := indexs[num2]; ok {
-            
-            if i == indexs[num2] {
-                continue
-            }
 
-            ret[0] = i
-            ret[1] = indexs[num2]
+		if _, ok := indexs[num2]; ok {
+			index1 := i
+			index2 := indexs[num2]
+
+			if index1 == index2 {
+				continue
+			}
+
+			ret[0] = index1
+			ret[1] = index2
 			return ret
 		}
 	}
-    
+
 	return ret
 }
 
