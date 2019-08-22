@@ -3,6 +3,8 @@
  *
  * [977] 有序数组的平方
  */
+
+// https://leetcode-cn.com/problems/squares-of-a-sorted-array/
 func sortedSquares(A []int) []int {
 	B := make([]int, len(A))
 
