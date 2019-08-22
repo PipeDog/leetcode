@@ -3,6 +3,8 @@
  *
  * [1] 两数之和
  */
+
+// https://leetcode-cn.com/problems/two-sum/
 func twoSum(nums []int, target int) []int {
 	ret := make([]int, 2)
 	numsLen := len(nums)
