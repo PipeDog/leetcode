@@ -10,6 +10,8 @@
  *     Next *ListNode
  * }
  */
+
+// https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
 	if head == nil {
 		return nil
