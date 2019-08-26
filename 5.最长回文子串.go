@@ -36,8 +36,6 @@ func longestPalindrome(s string) string {
 		// 以字符间隔为中心的回文子串长度，如"abac"，lenBetweenChars表示的是以'a' 'b'之间为中心的回文子串长度
 		lenBetweenChars := curLocLen(s, i, i + 1)
 
-		fmt.Printf("[lenOnChar=%d,lenBetweenChars=%d,ch=%s]", lenOnChar, lenBetweenChars, s[i: i+1])
-
 		len := lenOnChar
 		if lenBetweenChars > len {
 			len = lenBetweenChars
