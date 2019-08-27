@@ -5,18 +5,23 @@
  */
 
 // https://leetcode-cn.com/problems/container-with-most-water/
+
+
 func maxArea(height []int) int {
 	if len(height) <= 1 {
 		return 0
 	}
 
-	getArea := func(vals []int, left, right int) int {
-		minHeight := vals[left]
-		if minHeight > vals[right] {
-			minHeight = vals[right]
+	minValue := func(x, y int) int {
+		if x < y {
+			return x
 		}
+		return y
+	}
 
-		return (right - left) * minHeight
+	getArea := func(vals []int, left, right int) int {
+		high := minValue(vals[left], vals[right])
+		return high * (right - left)
 	}
 
 	left := 0
@@ -24,16 +29,16 @@ func maxArea(height []int) int {
 	maxArea := 0
 
 	for left < right {
-		area := getArea(height, left, right)
-		if maxArea < area {
-			maxArea = area
+		curArea := getArea(height, left, right)
+		if curArea > maxArea {
+			maxArea = curArea
 		}
 
 		// 将高度较小的一端向另一端移动
-		if height[left] > height[right] {
-			right--
-		} else {
+		if height[left] < height[right] {
 			left++
+		} else {
+			right--
 		}
 	}
 
