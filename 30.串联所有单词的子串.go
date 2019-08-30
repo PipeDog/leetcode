@@ -24,12 +24,13 @@ func findSubstring(s string, words []string) []int {
 		}
 	}
 
+	
 	for i := 0; i < strLen; {
 		word := words[i]
 
 		if _, ok := wordsCount[word]; ok {
 			i += wordLen
-			
+
 		} else {
 			i++
 		}
