@@ -21,7 +21,7 @@ func inorderTraversal(root *TreeNode) []int {
 	ret := make([]int, 0)
 	stack := make([]*TreeNode, 0)
 	stack = append(stack, root)
-	
+
 	for len(stack) > 0 {
 		for stack[len(stack)-1].Left != nil {
 			left := stack[len(stack)-1].Left
@@ -29,12 +29,12 @@ func inorderTraversal(root *TreeNode) []int {
 		}
 
 		for len(stack) > 0 {
-			pop := stack[len(stack)-1]
-			ret = append(ret, pop.Val)
+			top := stack[len(stack)-1]
+			ret = append(ret, top.Val)
 			stack = stack[:len(stack)-1]
 
-			if pop.Right != nil {
-				stack = append(stack, pop.Right)
+			if top.Right != nil {
+				stack = append(stack, top.Right)
 				break
 			}
 		}
