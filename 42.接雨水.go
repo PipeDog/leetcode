@@ -6,7 +6,7 @@
 
 // 解决思路：https://mp.weixin.qq.com/s/liL1ewy9QQ4EwuxWNtl-NA
 func trap(height []int) int {
-	if len(height) == 0 {
+	if len(height) <= 1 {
 		return 0
 	}
 

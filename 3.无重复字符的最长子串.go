@@ -6,7 +6,7 @@
 
 // https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/
 func lengthOfLongestSubstring(s string) int {
-    if len(s) <= 1 {
+	if len(s) <= 1 {
 		return len(s)
 	}
 
@@ -29,7 +29,6 @@ func lengthOfLongestSubstring(s string) int {
 
 		locs[ch] = i
 	}
-	
 	if curLen > maxLen {
 		maxLen = curLen
 	}
