@@ -6,6 +6,7 @@
 
 // https://leetcode-cn.com/problems/generate-parentheses/
 func generateParenthesis(n int) []string {
+	/*
 	var isValidString func(string) bool
 
 	isValidString = func(str string) bool {
@@ -76,6 +77,27 @@ func generateParenthesis(n int) []string {
 	}
 
 	combine("(", n * 2, 1)
+	return ret
+	*/
+
+	ret := make([]string, 0)
+	var generate func(str string, n, left, right int)
+
+	generate = func(str string, n, left, right int) {
+		if right == n {
+			ret = append(ret, str)
+			return
+		}
+
+		if left < n {
+			generate(str + "(", n, left + 1, right)
+		}
+		if right < left {
+			generate(str + ")", n, left, right + 1)
+		}
+	}
+
+	generate("", n, 0, 0)
 	return ret
 }
 
