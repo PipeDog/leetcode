@@ -12,7 +12,7 @@ func threeSum(nums []int) [][]int {
 
 	var sort func([]int, int, int)
 
-	sort = func(vals []int, left, right int) {
+	sort = func(vals []int, left int, right int) {
 		if left >= right {
 			return
 		}
@@ -25,32 +25,34 @@ func threeSum(nums []int) [][]int {
 			for i < j && vals[j] >= key {
 				j--
 			}
-			nums[i] = nums[j]
+			vals[i] = vals[j]
+
 			for i < j && vals[i] <= key {
 				i++
 			}
-			nums[j] = nums[i]
+			vals[j] = vals[i]
 		}
 
-		nums[i] = key
+		vals[i] = key
 		sort(vals, left, i - 1)
 		sort(vals, i + 1, right)
 	}
 
 	sort(nums, 0, len(nums) - 1)
 
+	numsLen := len(nums)
 	ret := make([][]int, 0)
 
-	for i := 0; i < len(nums) - 2; i++ {
+	for i := 0; i < numsLen - 2; i++ {
 		if nums[i] > 0 {
 			break
 		}
-		if i > 0 && nums[i] == nums[i-1] {
+		if i > 0 && nums[i - 1] == nums[i] {
 			continue
 		}
 
 		left := i + 1
-		right := len(nums) - 1
+		right := numsLen - 1
 
 		for left < right {
 			sum := nums[i] + nums[left] + nums[right]
@@ -65,7 +67,7 @@ func threeSum(nums []int) [][]int {
 
 				for left < right && nums[left] == nums[left+1] {
 					left++
-				}
+				} 
 				for left < right && nums[right] == nums[right-1] {
 					right--
 				}

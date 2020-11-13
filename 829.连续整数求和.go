@@ -56,8 +56,6 @@ func consecutiveNumbersSum(N int) int {
 	}
 
 	
-	
-
 }
 // @lc code=end
 
