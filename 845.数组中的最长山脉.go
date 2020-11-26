@@ -20,9 +20,7 @@ func longestMountain(arr []int) int {
 	curLen, maxLen := 0, 0
 	
 	for index := 1; index < numLen; index++ {
-		preNum := arr[index - 1]
-		curNum := arr[index]
-		oldState := curState
+		preNum, curNum, oldState := arr[index - 1], arr[index], curState
 
 		if preNum < curNum { // up
 			if oldState == down {
@@ -36,7 +34,6 @@ func longestMountain(arr []int) int {
 				}
 				curLen += 1
 			}
-
 			curState = up
 		} else if preNum > curNum { // go down
 			if oldState == up {
