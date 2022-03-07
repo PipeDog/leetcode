@@ -25,6 +25,7 @@ class Solution {
         }
 
         var ptr1 = l1, ptr2 = l2
+        // 用于保存两个节点值相加的进位值
         var carry = 0
         let prePtr = ListNode(0)
         var currentPtr = prePtr
@@ -34,10 +35,7 @@ class Solution {
             let val2 = ptr2 != nil ? ptr2!.val : 0
             let sum = val1 + val2 + carry
             let currentVal = sum % 10
-            carry = sum / 10
-
-            print("carry = \(carry), currentVal = \(currentVal)|||\t")
-            
+            carry = sum / 10            
 
             currentPtr.next = ListNode(currentVal)
             if let nextPtr = currentPtr.next {
