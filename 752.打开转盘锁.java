@@ -76,6 +76,8 @@ import java.util.Set;
 // @lc code=start
 class Solution {
 
+    // 初始值 0000，画一个多叉树（8叉树），其实就是 BFS 遍历
+    
     private Set<String> mDeadendsSet = new HashSet<>();
     private Set<String> mVisitedSet = new HashSet<>();
 
