@@ -76,75 +76,61 @@ import java.util.Set;
 // @lc code=start
 class Solution {
 
-    // 初始值 0000，画一个多叉树（8叉树），其实就是 BFS 遍历
-
     private Set<String> mDeadendsSet = new HashSet<>();
-    private Set<String> mVisistedSet = new HashSet<>();
-    private List<String> mResultList = new ArrayList<>();
+    private Set<String> mVisitedSet = new HashSet<>();
 
     public int openLock(String[] deadends, String target) {
-        if (target == null) {
-            return -1;
-        }
-        if (target.length() < 4) {
-            return -1;
-        }
-        if (target.equals("0000")) {
-            return 0;
+        for (String deadend : deadends) {
+            mDeadendsSet.add(deadend);
         }
 
-        for (int i = 0; i < deadends.length; i++) {
-            mDeadendsSet.add(deadends[i]);
-        }
-
-        String startPath = "0000";
-        return openLockCore(startPath, target);
+        return openLockCore(target);
     }
 
-    private int openLockCore(String path, String target) {
+    private int openLockCore(String target) {
         Queue<String> queue = new LinkedList<>();
-        queue.offer(path);
+        queue.offer("0000");
         int step = 0;
 
         while (!queue.isEmpty()) {
             List<String> list = new ArrayList<>();
-            while (!queue.isEmpty()) {
-                String temp = queue.poll();
 
-                if (mDeadendsSet.contains(temp)) {
-                    continue;
-                }
-                if (temp.equals(target)) {
+            while (!queue.isEmpty()) {
+                String value = queue.poll();
+                if (value.equals(target)) {
                     return step;
                 }
-
-                list.add(temp);
+                if (mDeadendsSet.contains(value)) {
+                    continue;
+                }
+                list.add(value);
             }
 
-            for (String curStep : list) {
-                for (int i = 0; i < 4; i++) {
-                    String nextStep = plus(curStep, i);
-                    if (!mVisistedSet.contains(nextStep)) {
-                        mVisistedSet.add(nextStep);
-                        queue.offer(nextStep);
+            for (int i = 0; i < list.size(); i++) {
+                String value = list.get(i);
+                for (int j = 0; j < 4; j++) {
+                    String next = plus(value, j);
+                    if (!mVisitedSet.contains(next)) {
+                        mVisitedSet.add(next);
+                        queue.offer(next);
                     }
-                    
-                    nextStep = minus(curStep, i);
-                    if (!mVisistedSet.contains(nextStep)) {
-                        mVisistedSet.add(nextStep);
-                        queue.offer(nextStep);
+
+                    next = minus(value, j);
+                    if (!mVisitedSet.contains(next)) {
+                        mVisitedSet.add(next);
+                        queue.offer(next);
                     }
                 }
             }
 
-            step++;
+            step += 1;
         }
 
         return -1;
     }
 
-    private String plus(String path, int index) {
-        char[] chars = path.toCharArray();
+    private String plus(String value, int index) {
+        char[] chars = value.toCharArray();
         if (chars[index] == '9') {
             chars[index] = '0';
         } else {
@@ -153,8 +139,8 @@ class Solution {
         return new String(chars);
     }
 
-    private String minus(String path, int index) {
-        char[] chars = path.toCharArray();
+    private String minus(String value, int index) {
+        char[] chars = value.toCharArray();
         if (chars[index] == '0') {
             chars[index] = '9';
         } else {
