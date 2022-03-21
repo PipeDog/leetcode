@@ -90,6 +90,8 @@ import javax.swing.tree.TreeNode;
  */
 class Solution {
 
+    // 如果想干掉递归，这里可以选择使用栈来实现
+
     private List<Integer> mResultList = new ArrayList<>();
 
     public List<Integer> preorderTraversal(TreeNode root) {
