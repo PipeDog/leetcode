@@ -51,7 +51,6 @@ class Solution {
         for (int i = 0; i < s.length(); i++) {
             String s1 = longestPalindrome(s, i, i);
             String s2 = longestPalindrome(s, i, i + 1);
-            System.out.println("s1 = " + s1 + ", s2 = " + s2 + ",");
             result = result.length() >= s1.length() ? result : s1;
             result = result.length() >= s2.length() ? result : s2;            
         }

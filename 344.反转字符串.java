@@ -45,6 +45,7 @@
 
 // @lc code=start
 class Solution {
+
     public void reverseString(char[] s) {
         if (s == null || s.length < 1) {
             return;
@@ -58,6 +59,7 @@ class Solution {
             s[right] = temp;
         }
     }
+    
 }
 // @lc code=end
 
