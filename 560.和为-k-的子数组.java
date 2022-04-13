@@ -65,6 +65,8 @@ class Solution {
 
             int need = preSums[i] - k;
             if (countTable.containsKey(need)) {
+                System.out.print(String.format("preSums[%d]=%d, need=%d, count=%d,\n", i, preSums[i], need,
+                        countTable.get(need)));
                 result += countTable.get(need);
             }
 
